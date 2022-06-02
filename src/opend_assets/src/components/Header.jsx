@@ -9,12 +9,19 @@ import CURRENT_USER_ID from "../index";
 
 function Header() {
 
-  const [userOwnedGallery, setUserOwnedGallery] = useState()
+  const [userOwnedGallery, setUserOwnedGallery] = useState();
+  const [listingGallery, setListingGallery] = useState();
 
   async function getNFTs () {
     const userNFTIds = await opend.getOwnerNFTs(CURRENT_USER_ID)
-    console.log(userNFTIds)
-    setUserOwnedGallery(<Gallery title = "My NFTs" ids = {userNFTIds}/>)
+    console.log(userNFTIds);
+    setUserOwnedGallery(<Gallery title = "My NFTs" ids = {userNFTIds} role="collection"/>)
+
+    const listedNFTIds = await opend.getListedNFTs();
+    console.log(listedNFTIds);
+    setListingGallery(
+      <Gallery title="Discover" ids={listedNFTIds} role="discover" />
+    );
   }
 
   useEffect(()=> {
@@ -46,11 +53,14 @@ function Header() {
         </header>
       </div>
       <Switch>
-        <Route exact path="/"><img className="bottom-space" src={homeImage} /></Route>
-        <Route path="/discover"><h1>Discover</h1></Route>
-         <Route path="/minter"> <Minter/></Route>
+        <Route exact path="/">
+          <img className="bottom-space" src={homeImage} />
+        </Route>
+        <Route path="/discover">{listingGallery}</Route>
+        <Route path="/minter">
+          <Minter />
+        </Route>
         <Route path="/collection">{userOwnedGallery}</Route>
-
       </Switch>
     </BrowserRouter>
   );
