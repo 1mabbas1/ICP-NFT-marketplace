@@ -1,10 +1,12 @@
 export const idlFactory = ({ IDL }) => {
   return IDL.Service({
+    'getOpendId' : IDL.Func([], [IDL.Principal], ['query']),
     'getOwnerNFTs' : IDL.Func(
         [IDL.Principal],
         [IDL.Vec(IDL.Principal)],
         ['query'],
       ),
+    'listItem' : IDL.Func([IDL.Principal, IDL.Nat], [IDL.Text], []),
     'mint' : IDL.Func([IDL.Vec(IDL.Nat8), IDL.Text], [IDL.Principal], []),
   });
 };
