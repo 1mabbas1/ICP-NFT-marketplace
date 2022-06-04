@@ -1,6 +1,4 @@
 
-https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)
-
 # To Install and Run the Project
 
 1. start local dfx
@@ -108,12 +106,5 @@ dfx canister id opend
 dfx canister call qvhpv-4qaaa-aaaaa-aaagq-cai transferOwnership '(principal "ryjl3-tyaaa-aaaaa-aaaba-cai", true)'
 ```
 
-# Conneting to the Token Canister
 
-1. Copy over the token declarations folder
-
-2. Set the token canister id into the <REPLACE WITH TOKEN CANISTER ID>
-
-```
-const dangPrincipal = Principal.fromText("<REPLACE WITH TOKEN CANISTER ID>");
 ```
